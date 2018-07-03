@@ -1,0 +1,11 @@
+<li *ngFor="let task of tasks">
+  <h3>{{task.id}}</h3>
+  <h3>{{task.nombre}}</h3>
+  <button (click)="deleteTask(task.id)">Borrar task</button>
+</li>
+<br>
+<button (click)="agregarTask()">Agregar task</button>
+<br>
+<div *ngIf="showNewTask">
+  <app-new-task></app-new-task>
+</div>
