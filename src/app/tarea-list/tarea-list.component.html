@@ -1,0 +1,12 @@
+<div id="myDIV" class="header">
+  <h2>Mis tareas</h2>
+  <input type="text" id="nombreTarea" placeholder="Nombre..." [(ngModel)] = "nombreTarea">
+  <span class="btnAgregar" (click) = "agregarTarea()">Agregar</span>
+</div>
+
+<ul class="tareas">
+  <li *ngFor="let tarea of tareas" class="{{tarea.finalizada === true ? 'checked' : ''}}">
+    <span (click) = "marcarTareaFinalizada(tarea)">{{tarea.nombre}}</span>
+    <span class="close" (click) = "borrarTarea(tarea)">×</span>
+  </li>
+</ul>
