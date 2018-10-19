@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TareaService {
 
-  private TASK_API = 'http://192.168.56.1:8080/TaskApi/api/task/';
+  private TASK_API = 'http://localhost:8080/TaskApi/api/task/';
   //private TASK_API = 'http://localhost:3000/task/';
 
   constructor(private http: HttpClient) { }

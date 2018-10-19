@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TareaService } from '../tarea.service';
 import { Tarea } from '../tarea';
-import { TareaServiceNode } from '../tarea.service.node';
 
 @Component({
   selector: 'app-tarea-list',
@@ -10,7 +9,7 @@ import { TareaServiceNode } from '../tarea.service.node';
 })
 export class TareaListComponent implements OnInit {
 
-  constructor(private tareaService: TareaService, private tareaNodeService: TareaServiceNode) { }
+  constructor(private tareaService: TareaService/*, private tareaNodeService: TareaServiceNode*/) { }
 
   tareas: Tarea[];
 
@@ -23,11 +22,11 @@ export class TareaListComponent implements OnInit {
   getTareas(): void {
     this.tareaService.getTasks().subscribe(tareas => this.tareas = tareas);
   }
-
+/*
   getTareasNode(): void {
     this.tareaNodeService.getTasks().subscribe(tareas => this.tareas = tareas);
   }
-
+*/
   marcarTareaFinalizada(tarea: Tarea) {
     var mensaje = tarea.finalizada ? 'Desea remover la marca de finalización?' : 'Desea marcar la tarea como finalizada?';
 
@@ -46,7 +45,10 @@ export class TareaListComponent implements OnInit {
 
   agregarTarea(){
     if (confirm('Confirma que desea agregar una tarea con el nombre: ' + this.nombreTarea)){
-      this.tareaService.addTask(this.nombreTarea).subscribe(response => this.tareas.push(response));
+      var tareaNueva = new Tarea();
+      tareaNueva.finalizada = false;
+      tareaNueva.nombre = this.nombreTarea;
+      this.tareaService.addTask(this.nombreTarea).subscribe(response => this.tareas.push(tareaNueva));
       this.nombreTarea = '';
     }
   }
